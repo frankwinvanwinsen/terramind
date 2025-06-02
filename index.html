@@ -52,17 +52,13 @@
       </h1>
       <br>
       <p class="subtitle is-5 has-text-weight-semibold">built by IBM and ESA Φ-lab</p>
-      <p class="subtitle is-5 has-text-weight-semibold">
-        trained at Julich Supercomputing Center with funding via the
-        <a href="https://www.fast-eo.eu/" target="_blank">FAST-EO project</a>
-      </p>
+<!--      <p class="subtitle is-5 has-text-weight-semibold">-->
+<!--        trained at Julich Supercomputing Center with funding via the <a href="https://www.fast-eo.eu/" target="_blank">FAST-EO project</a>-->
+<!--      </p>-->
       <!-- submit button -->
       <a href="https://huggingface.co/ibm-esa-geospatial" class="external-link button is-normal is-rounded is-dark">
-<!--        <span class="icon">-->
-<!--            <i class="fas fa-hands-helping"></i>-->
-<!--        </span>-->
         <span>🤗 </span>
-        <span>Model</span>
+        <span>Models</span>
       </a>
       <a href="https://arxiv.org/pdf/2504.11171" class="external-link button is-normal is-rounded is-dark">
         <span class="icon">
@@ -83,8 +79,13 @@
         </span>
         <span>Challenge</span>
       </a>
-      <p class="stars">🌟 GitHub Stars: <span id="star-count">Loading...</span>
+      <br>
+      <br>
+      <p>trained at Julich Supercomputing Center with funding via the <a href="https://www.fast-eo.eu/" target="_blank">FAST-EO project</a>
       </p>
+      <br>
+<!--      <p class="stars">🌟 GitHub Stars: <span id="star-count">Loading...</span>-->
+<!--      </p>-->
       <p class="stars">🤗 HuggingFace Downloads per Month: 10K+
       </p>
 
@@ -125,7 +126,10 @@
       <img src="./static/images/terramind_architecture.svg" alt="Architecture" class="full-image">
       <br>
       <br>
-      Due to the multimodal correlation learning, TerraMind can be applied for different downstream applications. The model can natively <strong>generated any pre-training modality from other modalities</strong> and supports chained generation for consistent generations across modalities. TerraMind encodes inputs into a <strong>well-structured embedding space</strong>, making the encoder suitable for classical fine-tuning. Additionally, we introduce <strong>Thinking-in-Modalities (TiM) tuning</strong> that first generates intermediate tokens of another modality before predicting the task output.
+      Due to the multimodal correlation learning, TerraMind can be applied for different downstream applications.
+      TerraMind encodes inputs into a <strong>well-structured embedding space</strong>, making the encoder suitable for classical fine-tuning.
+      Additionally, we introduce <strong>Thinking-in-Modalities (TiM) tuning</strong> that first generates intermediate tokens of another modality before predicting the task output.
+      Also, the model can natively <strong>generated any pre-training modality from other modalities</strong> and supports chained generation for consistent generations across modalities.
       <br>
       <br>
       <img src="./static/images/terramind_applications.svg" alt="Architecture" class="full-image">
@@ -148,21 +152,23 @@
 <section class="section alt-bg full-bleed">
   <div class="container is-max-desktop justify-text">
     <h2 class="title is-3">🚀 How does TerraMind compare to other models?</h2>
-    Performance evaluation of TerraMind across nine benchmark datasets using the PANGAEA evaluation protocol.
+    TerraMind was <strong>benchmarked by ESA</strong> in both unimodal and multimodal settings following the community-standard PANGAEA benchmark. Overall, TerraMindv1-B <strong>outperforms all other GeoFMs by at least 3pp avg. mIoU</strong>. Importantly, TerraMind is the <strong>only foundation model approach in EO that outperforms task-specific U-Net models across the PANGAEA benchmark</strong>.
+    <br>
+    <br>
     <img src="./static/images/radar.svg" alt="Radar Plot" class="two-thirds-image">
-    <br>
-    <br>
-    TerraMind was <strong>benchmarked by ESA</strong> in both unimodal and multimodal settings following the community-standard PANGAEA benchmark. Overall, TerraMindv1-B <strong>outperforms all other GeoFMs by at least 3pp avg. mIoU</strong>. Importantly, TerraMind is the <strong>only foundation model approach in EO that outperforms task-specific U-Net models across the PANGAEA benchmark</strong>. Performance is approximately 2pp avg. mIoU higher for Terramindv1-L, with a peak of 5pp in multimodal datasets.
+    <p class="intro">
+    PANGAEA bench results for TerraMind and the top 5 EO FMs based on average rank. The mIoU is visualized on a min-max normalized scale with the best performance in displayed in parentheses.
+    </p>
     <br>
     <br>
     Performance evaluation of TerraMind across nine benchmark datasets using the PANGAEA evaluation protocol. Higher mIoU (↑) and lower rank values (↓) are reported. The best model is highlighted and the second best is underscored.
     <br>
     <br>
     <img src="./static/images/full_comparison.svg" alt="Performance Table" class="full-image">
-    "To me, what sets TerraMind apart is its <strong>ability to go beyond simply processing earth observations with computer vision algorithms</strong>. It instead has an <strong>intuitive understanding of geospatial data and our planet</strong>" said Juan Bernabé-Moreno, director of IBM Research UK and Ireland, and IBM's Accelerated Discovery lead for climate and sustainability. "At present, TerraMind is the <strong>best performing AI foundation model for Earth observation</strong> according to well-established community-benchmarks" Bernabé-Moreno added.
-    <br>
-    <br>
-    "TerraMind combines insights from several modalities of training data to increase the accuracy of its outputs" said Simonetta Cheli, director of ESA Earth Observation Programmes and Head of ESRIN. "The ability to intuitively bring in contextual information and generate unseen scenarios is a <strong>critical step in unlocking the value of ESA data</strong>. Compared to competitive models, it <strong>can uncover a deeper understanding of the Earth for researchers and businesses alike</strong>."
+<!--    "To me, what sets TerraMind apart is its <strong>ability to go beyond simply processing earth observations with computer vision algorithms</strong>. It instead has an <strong>intuitive understanding of geospatial data and our planet</strong>" said Juan Bernabé-Moreno, director of IBM Research UK and Ireland, and IBM's Accelerated Discovery lead for climate and sustainability. "At present, TerraMind is the <strong>best performing AI foundation model for Earth observation</strong> according to well-established community-benchmarks" Bernabé-Moreno added.-->
+<!--    <br>-->
+<!--    <br>-->
+<!--    "TerraMind combines insights from several modalities of training data to increase the accuracy of its outputs" said Simonetta Cheli, director of ESA Earth Observation Programmes and Head of ESRIN. "The ability to intuitively bring in contextual information and generate unseen scenarios is a <strong>critical step in unlocking the value of ESA data</strong>. Compared to competitive models, it <strong>can uncover a deeper understanding of the Earth for researchers and businesses alike</strong>."-->
   </div>
 </section>
 
@@ -172,6 +178,7 @@
   <div class="container is-max-desktop justify-text">
     <h2 class="title is-3 mt-6">💭 What is Thinking-in-Modalities?</h2>
     During fine-tuning or inference, TerraMind can pause for a moment, imagine a helpful but absent layer, append the imagined tokens to its own input sequence, and then lets the fine-tuned encoder continue to improve its own performance. Because the imagination lives in token space, the approach <strong>avoids the heavy diffusion decoding that full image synthesis would require</strong>. So, TerraMind can generate any missing modality as an intermediate step — an ability we call <strong>Thinking in Modalities (TiM)</strong>.
+    <br>
     <br>
     <img src="./static/images/tim.svg" alt="TiM" class="two-thirds-image">
     <br>
@@ -186,15 +193,20 @@
 <!-- ───────── Few-Shot performance ───────── -->
 <section class="section alt-bg full-bleed">
   <div class="container is-max-desktop justify-text">
-    <h2 class="title is-3">⭐️ Exploring the embedding space via one-shot classification</h2>
-    TerraMind is pretrained on a <strong>cross-modal patch classification objective</strong>. Empirical results suggest that this results in a well-structured latent space that clusters different concepts accurately. To investigate this hypothesis, we apply 1-Nearest-Neighbor (1-NN) classification without applying any kind of weight updates. <strong>TerraMind outperforms other models significantly, pointing to a better structured embedding space</strong>.
+    <h2 class="title is-3">⭐️ Exploring the embedding space</h2>
+    TerraMind is pretrained on a <strong>cross-modal patch classification objective</strong>. Empirical results suggest that this results in a well-structured latent space that clusters different concepts accurately. To investigate this hypothesis, we apply <strong>1-Nearest-Neighbor (1-NN) classification</strong> without applying any kind of weight updates. <strong>TerraMind outperforms other models significantly, pointing to a better structured embedding space</strong>.
     <br>
     <br>
     <img src="./static/images/few_shot_approach.svg" alt="Few Shot" class="two-thirds-image">
     <br>
+    <p class="intro">
+      For one-shot classification, a labeled support set and unlabeled query data are mapped into an embedding space using the TerraMind encoder. The targets are classified based on the shortest distance to the labeled samples in the embedding space.
+    </p>
     <br>
-    1-shot 5-way classification results using nearest neighbors, measured in accuracy and averaged over 200 runs. TerraMind outperforms benchmarks from CV and EO, suggesting a well-structured latent space.
     <br>
+    <p class="intro">
+      1-shot 5-way classification results using nearest neighbors, measured in accuracy and averaged over 200 runs. TerraMind outperforms benchmarks from CV and EO, suggesting a well-structured latent space.
+    </p>
     <br>
     <img src="./static/images/few_shot_results.svg" alt="Few Shot" class="two-thirds-image">
   </div>
@@ -204,15 +216,16 @@
 <section class="section alt-bg full-bleed">
   <div class="container is-max-desktop justify-text">
     <h2 class="title is-3 mt-6">🛰️ Any-to-any generations</h2>
-    TerraMind is able to generate any modality from any other modality very efficiently. ALl below examples required ten diffusion steps using TerraMind-B.
-    <br>
+    TerraMind is able to generate any modality from any other modality very efficiently.
+    By using chained generations, the generated modalities are consistent as shown in the following figure.
+    The generations can be applied to large tiles covering full landscapes as shown in the following examples.
+    ALl below examples required ten diffusion steps using TerraMind-B.
     <br>
     <img src="./static/images/generations.svg" alt="Any-to-any generations">
     <br>
     <br>
     <p>Large tile generation of Sentinel-1 RTC data using a Sentinel-2 L2A input from <strong>Singapore</strong>. Many features like ships or airport runways are clearly visible in the S-1 RTC generations while clouds are completly ignored.</p>
     <br>
-
     <iframe
         src="./static/images/slider_generation_singapore_s1.html"
         style="width:100%;aspect-ratio:2;border:0;"
@@ -221,24 +234,18 @@
       </iframe>
     <br>
     <br>
-
-    <div class="container is-max-desktop">
-      <p>Large tile generation of a Sentinel-1 GRD radar map using a Sentinel-2 L2A input from <strong>Santiago de Compostela</strong>. </p>
-    </div>
+    <p>Large tile generation of a Sentinel-1 GRD radar map using a Sentinel-2 L2A input from <strong>Santiago de Compostela</strong>. </p>
     <br>
-
     <iframe
       src="./static/images/slider_generation_santiago_s1grd.html"
       style="width: 100%; aspect-ratio:2; border: 0;"
       loading="lazy"
       title="Juxtapose slider">
     </iframe>
-
-    <div class="container is-max-desktop">
-      <p>Large tile generation of a land-use map using a Sentinel-2 L2A input from a bay near <strong>Santiago de Compostela</strong>. </p>
-    </div>
     <br>
-
+    <br>
+    <p>Large tile generation of a land-use map using a Sentinel-2 L2A input from a bay near <strong>Santiago de Compostela</strong>. </p>
+    <br>
     <iframe
       src="./static/images/slider_generation_santiago_dem.html"
       style="width:100%;aspect-ratio:2;border:0;"
