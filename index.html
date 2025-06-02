@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<section class="section"><!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="TerraMind: Large-Scale Generative Multimodality for Earth Observation">
+  <meta name="keywords" content="TerraMind, geospatial AI, multi-modality, foundation models">
+  <meta name="author" content="IBM">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IBM-ESA TerraMind</title>
+
+  <!-- Fonts & CSS -->
+  <link rel="shortcut icon" href="./favicon.ico?" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+  <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+
+  <!-- Light-gray background for every 2nd block -->
+  <style>
+    section.alt-bg:nth-of-type(odd){background:#f5f5f5;}
+  </style>
+</head>
+<body>
+
+<section class="hero is-medium is-parallax full-bleed hero-bg"
+         style="background:url('./static/images/bosten_generation.png') center/cover no-repeat;">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+<!--    <p>Generated modalities based on S-2 input</p>-->
+    </div>
+  </div>
+</section>
+
+<section class="section alt-bg full-bleed">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      <h1 class="title is-1">
+        TerraMind
+        <img src="./static/images/Logo medium.svg" alt="Logo" class="title-logo">
+      </h1>
+      <br>
+      <p class="subtitle is-5 has-text-weight-semibold">built by IBM and ESA Φ-lab</p>
+      <p class="subtitle is-5 has-text-weight-semibold">
+        trained at Julich Supercomputing Center with funding via the
+        <a href="https://www.fast-eo.eu/" target="_blank">FAST-EO project</a>
+      </p>
+      <!-- submit button -->
+      <a href="https://huggingface.co/ibm-esa-geospatial" class="external-link button is-normal is-rounded is-dark">
+<!--        <span class="icon">-->
+<!--            <i class="fas fa-hands-helping"></i>-->
+<!--        </span>-->
+        <span>🤗 </span>
+        <span>Model</span>
+      </a>
+      <a href="https://arxiv.org/pdf/2504.11171" class="external-link button is-normal is-rounded is-dark">
+        <span class="icon">
+            <i class="ai ai-arxiv"></i>
+        </span>
+        <span>arXiv</span>
+      </a>
+      <a href="https://github.com/ibm/terramind" class="external-link button is-normal is-rounded is-dark">
+        <span class="icon">
+            <i class="fab fa-github"></i>
+        </span>
+        <span>Code</span>
+        </a>
+      </a>
+      <a href="https://huggingface.co/spaces/ibm-esa-geospatial/challenge" class="external-link button is-normal is-rounded is-dark">
+        <span class="icon">
+            <i class="fas fa-trophy"></i>
+        </span>
+        <span>Challenge</span>
+      </a>
+      <p class="stars">🌟 GitHub Stars: <span id="star-count">Loading...</span>
+      </p>
+      <p class="stars">🤗 HuggingFace Downloads per Month: 10K+
+      </p>
+
+      <script>
+        fetch('https://api.github.com/repos/ibm/TerraMind')
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById('star-count').textContent = data.stargazers_count;
+          })
+          .catch(error => {
+            console.error('Error fetching star count:', error);
+            document.getElementById('star-count').textContent = 'Error';
+          });
+      </script>
+    </div>
+  </div>
+</section>
+
+<section class="section alt-bg full-bleed intro-block">
+  <div class="container is-max-desktop">
+    <p class="intro">
+      <strong>Meet TerraMind</strong>, the first any-to-any generative, multimodal foundation model for Earth observation.
+      TerraMind represents new levels of understanding geospatial data, introduces new capabilities such as Thinking-in-Modalities (TiM),
+      and outperforms existing models significantly across community-standard benchmarks.
+    </p>
+  </div>
+</section>
+
+<!-- ───────── Architecture ───────── -->
+<section class="section alt-bg full-bleed">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">💡 How does TerraMind work?</h2>
+    <ul class="content justify-text">
+      <br>
+      TerraMind is pretrained on dual-scale representations combining both token-level and pixel-level data across modalities. On a token level, TerraMind encodes <strong>high-level contextual information to learn cross-modal relationships</strong>, while on a pixel level, TerraMind leverages <strong>fine-grained representations to capture critical spatial nuances</strong>.
+      <br>
+      <br>
+      <img src="./static/images/terramind_architecture.svg" alt="Architecture" class="full-image">
+      <br>
+      <br>
+      Due to the multimodal correlation learning, TerraMind can be applied for different downstream applications. The model can natively <strong>generated any pre-training modality from other modalities</strong> and supports chained generation for consistent generations across modalities. TerraMind encodes inputs into a <strong>well-structured embedding space</strong>, making the encoder suitable for classical fine-tuning. Additionally, we introduce <strong>Thinking-in-Modalities (TiM) tuning</strong> that first generates intermediate tokens of another modality before predicting the task output.
+      <br>
+      <br>
+      <img src="./static/images/terramind_applications.svg" alt="Architecture" class="full-image">
+      <br>
+      <br>
+      TerraMind leverages autoencoder-based architectures with a <strong>quantization step in the bottleneck</strong> for imagelike modalities such as Sentinel-1, Sentinel-2, LULC, NDVI, and DEM. Tokenizer encoders process an input image and generate a latent representation for each 16×16 patch, which is then <strong>discretized with finite-scalar-quantization (FSQ)</strong> into one of N codewords.
+      <br>
+      <br>
+      <img src="./static/images/tokenizers.svg" alt="Tokenizer Architecture" class="two-thirds-image">
+      <br>
+      <br>
+      <!--Animated GIF. Does not look very clear. Has additional white space at the bottom -->
+<!--      <img src="./static/images/correlation_learning.gif" alt="Correlation Learning" class="two-thirds-image">-->
+    </ul>
+  </div>
+</section>
+
+
+<!-- ───────── Benchmark performance ───────── -->
+<section class="section alt-bg full-bleed">
+  <div class="container is-max-desktop justify-text">
+    <h2 class="title is-3">🚀 How does TerraMind compare to other models?</h2>
+    Performance evaluation of TerraMind across nine benchmark datasets using the PANGAEA evaluation protocol.
+    <img src="./static/images/radar.svg" alt="Radar Plot" class="two-thirds-image">
+    <br>
+    <br>
+    TerraMind was <strong>benchmarked by ESA</strong> in both unimodal and multimodal settings following the community-standard PANGAEA benchmark. Overall, TerraMindv1-B <strong>outperforms all other GeoFMs by at least 3pp avg. mIoU</strong>. Importantly, TerraMind is the <strong>only foundation model approach in EO that outperforms task-specific U-Net models across the PANGAEA benchmark</strong>. Performance is approximately 2pp avg. mIoU higher for Terramindv1-L, with a peak of 5pp in multimodal datasets.
+    <br>
+    <br>
+    Performance evaluation of TerraMind across nine benchmark datasets using the PANGAEA evaluation protocol. Higher mIoU (↑) and lower rank values (↓) are reported. The best model is highlighted and the second best is underscored.
+    <br>
+    <br>
+    <img src="./static/images/full_comparison.svg" alt="Performance Table" class="full-image">
+    "To me, what sets TerraMind apart is its <strong>ability to go beyond simply processing earth observations with computer vision algorithms</strong>. It instead has an <strong>intuitive understanding of geospatial data and our planet</strong>" said Juan Bernabé-Moreno, director of IBM Research UK and Ireland, and IBM's Accelerated Discovery lead for climate and sustainability. "At present, TerraMind is the <strong>best performing AI foundation model for Earth observation</strong> according to well-established community-benchmarks" Bernabé-Moreno added.
+    <br>
+    <br>
+    "TerraMind combines insights from several modalities of training data to increase the accuracy of its outputs" said Simonetta Cheli, director of ESA Earth Observation Programmes and Head of ESRIN. "The ability to intuitively bring in contextual information and generate unseen scenarios is a <strong>critical step in unlocking the value of ESA data</strong>. Compared to competitive models, it <strong>can uncover a deeper understanding of the Earth for researchers and businesses alike</strong>."
+  </div>
+</section>
+
+
+<!-- ───────── TiM ───────── -->
+<section class="section alt-bg full-bleed">
+  <div class="container is-max-desktop justify-text">
+    <h2 class="title is-3 mt-6">💭 What is Thinking-in-Modalities?</h2>
+    During fine-tuning or inference, TerraMind can pause for a moment, imagine a helpful but absent layer, append the imagined tokens to its own input sequence, and then lets the fine-tuned encoder continue to improve its own performance. Because the imagination lives in token space, the approach <strong>avoids the heavy diffusion decoding that full image synthesis would require</strong>. So, TerraMind can generate any missing modality as an intermediate step — an ability we call <strong>Thinking in Modalities (TiM)</strong>.
+    <br>
+    <img src="./static/images/tim.svg" alt="TiM" class="two-thirds-image">
+    <br>
+    <br>
+    "TiM tuning boosts data efficiency by <strong>self-generating the additional training data relevant to the problem being addressed</strong> — for example, by telling the model to "think" about land cover when mapping water bodies. This breakthrough can unlock unprecedented accuracy when specializing TerraMind for particular use cases" said Johannes Jakubik, an IBM Research scientist based in Zurich.
+    <br>
+    <br>
+    <img src="./static/images/tim_results.svg" alt="TiM Results" class="two-thirds-image">
+  </div>
+</section>
+
+<!-- ───────── Few-Shot performance ───────── -->
+<section class="section alt-bg full-bleed">
+  <div class="container is-max-desktop justify-text">
+    <h2 class="title is-3">⭐️ Exploring the embedding space via one-shot classification</h2>
+    TerraMind is pretrained on a <strong>cross-modal patch classification objective</strong>. Empirical results suggest that this results in a well-structured latent space that clusters different concepts accurately. To investigate this hypothesis, we apply 1-Nearest-Neighbor (1-NN) classification without applying any kind of weight updates. <strong>TerraMind outperforms other models significantly, pointing to a better structured embedding space</strong>.
+    <br>
+    <br>
+    <img src="./static/images/few_shot_approach.svg" alt="Few Shot" class="two-thirds-image">
+    <br>
+    <br>
+    1-shot 5-way classification results using nearest neighbors, measured in accuracy and averaged over 200 runs. TerraMind outperforms benchmarks from CV and EO, suggesting a well-structured latent space.
+    <br>
+    <br>
+    <img src="./static/images/few_shot_results.svg" alt="Few Shot" class="two-thirds-image">
+  </div>
+</section>
+
+<!-- ───────── Generations ───────── -->
+<section class="section alt-bg full-bleed">
+  <div class="container is-max-desktop justify-text">
+    <h2 class="title is-3 mt-6">🛰️ Any-to-any generations</h2>
+    TerraMind is able to generate any modality from any other modality very efficiently. ALl below examples required ten diffusion steps using TerraMind-B.
+    <br>
+    <br>
+    <img src="./static/images/generations.svg" alt="Any-to-any generations">
+    <br>
+    <br>
+    <p>Large tile generation of Sentinel-1 RTC data using a Sentinel-2 L2A input from <strong>Singapore</strong>. Many features like ships or airport runways are clearly visible in the S-1 RTC generations while clouds are completly ignored.</p>
+    <br>
+
+    <iframe
+        src="./static/images/slider_generation_singapore_s1.html"
+        style="width:100%;aspect-ratio:2;border:0;"
+        loading="lazy"
+        title="Juxtapose slider">
+      </iframe>
+    <br>
+    <br>
+
+    <div class="container is-max-desktop">
+      <p>Large tile generation of a Sentinel-1 GRD radar map using a Sentinel-2 L2A input from <strong>Santiago de Compostela</strong>. </p>
+    </div>
+    <br>
+
+    <iframe
+      src="./static/images/slider_generation_santiago_s1grd.html"
+      style="width: 100%; aspect-ratio:2; border: 0;"
+      loading="lazy"
+      title="Juxtapose slider">
+    </iframe>
+
+    <div class="container is-max-desktop">
+      <p>Large tile generation of a land-use map using a Sentinel-2 L2A input from a bay near <strong>Santiago de Compostela</strong>. </p>
+    </div>
+    <br>
+
+    <iframe
+      src="./static/images/slider_generation_santiago_dem.html"
+      style="width:100%;aspect-ratio:2;border:0;"
+      loading="lazy"
+      title="Juxtapose slider">
+    </iframe>
+
+  </div>
+</section>
+
+
+<!-- ───────── Challenge ───────── -->
+<section class="full-bleed hero-bg"
+         style="background:url('./static/images/Blue sky image.png') center/cover no-repeat;">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      <br>
+      <br>
+      <h1 class="title is-2 white">
+        <img src="./static/images/Logo medium white.svg" alt="Logo" class="title-logo">
+        TerraMind&nbsp;Blue-Sky&nbsp;Challenge
+      </h1>
+      <br>
+      <a href="https://huggingface.co/spaces/ibm-esa-geospatial/challenge" class="is-link button is-normal is-rounded is-dark">
+        Submit Your Idea
+      </a>
+      <br>
+      <br>
+      <p class="intro white">
+        A bi-monthly award spotlighting the boldest, most imaginative ways to push
+        TerraMind beyond “just another fine-tune”. Whether you’re prototyping a new multi-modal
+        workflow, exploring Thinking-in-Modalities, or inventing a never-seen geospatial
+        application, we want you to share it with everyone.
+      </p>
+      <br>
+      <br>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── Voices ───────── -->
+<section class="section alt-bg full-bleed">
+  <div class="container is-max-desktop justify-text">
+    <h2 class="title is-3">📽️ Voices on TerraMind</h2>
+    <br>
+    <div class="video-container">
+      <video
+        src="https://dlmultimedia.esa.int/download/public/videos/2025/04/031/2504_031_AR_EN.mp4"
+        muted playsinline controls></video>
+    </div>
+    <br>
+    <br>
+<!--    ESA: "TerraMind is a powerful new AI tool designed to help us better understand and protect our planet. By combining different types of Earth observation data, it can deliver accurate answers to questions about climate and nature. From spotting methane leaks to tracking changes in forests and land use, TerraMind is set to play a key role in tackling some of the current environmental challenges."-->
+<!--    <br>-->
+    "With Earth observation science, technology, and international collaboration, we are unlocking the full potential of space-based data to protect our planet" said Nicolas Longepe, Earth Observation Data Scientist at ESA. "<strong>This project is a perfect example where the scientific community, big tech companies, and experts have collaborated to leverage this technology for the benefit of Earth sciences</strong>. The magic happens when earth observation data experts, machine learning experts, data scientists, and HPC engineers come together."
+  </div>
+</section>
+
+<!-- ───────────────────── FOOTER ───────────────────── -->
+<footer class="footer full-bleed">
+  <div class="container content has-text-centered">
+    <p>© 2025 IBM & ESA Φ-lab – TerraMind</p>
+    <p>
+      This site reuses elements from the
+      <a href="https://github.com/nerfies/nerfies.github.io" target="_blank">Nerfies template</a>
+      (CC-BY-SA 4.0).
+    </p>
+  </div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const hero = document.querySelector('.hero-bg');
+  if (!hero) return;                     // safety
+
+  window.addEventListener('scroll', () => {
+    const y = window.pageYOffset * 0.4;  // 0.2-0.5 = slower/faster
+    hero.style.backgroundPosition = `center ${y}px`;
+  });
+});
+</script>
+</body>
+</html>
+</section>
+</html>
