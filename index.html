@@ -57,8 +57,7 @@
 <!--      </p>-->
       <!-- submit button -->
       <a href="https://huggingface.co/ibm-esa-geospatial" class="external-link button is-normal is-rounded is-dark">
-        <span>🤗 </span>
-        <span>Models</span>
+        <span>🤗 Models</span>
       </a>
       <a href="https://arxiv.org/pdf/2504.11171" class="external-link button is-normal is-rounded is-dark">
         <span class="icon">
@@ -86,18 +85,28 @@
       <br>
 <!--      <p class="stars">🌟 GitHub Stars: <span id="star-count">Loading...</span>-->
 <!--      </p>-->
-      <p class="stars">🤗 HuggingFace Downloads per Month: 10K+
+<!--      <script>-->
+<!--        fetch('https://api.github.com/repos/ibm/TerraMind')-->
+<!--          .then(response => response.json())-->
+<!--          .then(data => {-->
+<!--            document.getElementById('star-count').textContent = data.stargazers_count;-->
+<!--          })-->
+<!--          .catch(error => {-->
+<!--            console.error('Error fetching star count:', error);-->
+<!--            document.getElementById('star-count').textContent = 'Error';-->
+<!--          });-->
+<!--      </script>-->
+      <p class="stars">🤗 Total downloads from Hugging Face: <span id="hf-downloads">Loading...</span> (all models)
       </p>
-
       <script>
-        fetch('https://api.github.com/repos/ibm/TerraMind')
+        fetch('https://raw.githubusercontent.com/IBM/terramind/refs/heads/webpage/assets/hf_total_downloads.json')
           .then(response => response.json())
           .then(data => {
-            document.getElementById('star-count').textContent = data.stargazers_count;
+            document.getElementById('hf-downloads').textContent = data.message;
           })
           .catch(error => {
-            console.error('Error fetching star count:', error);
-            document.getElementById('star-count').textContent = 'Error';
+            console.error('Error fetching HF downloads:', error);
+            document.getElementById('hf-downloads').textContent = 'Error';
           });
       </script>
     </div>
